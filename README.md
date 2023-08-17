@@ -1,58 +1,125 @@
-A basic example to output text to console from nodes over a network using [MPI].
+A basic example to perform operations on a list of numbers on GPU using [CUDA].
 
-A cluster at [IIIT] has four [SLURM] nodes. We want to run one process on each
-node, and run `32` threads using [OpenMP]. In future, such a setup would allow
-us to run distributed algorithms that utilize each node's memory efficiently and
-minimize communication cost (within the same node). Output is saved in [gist].
-Technical help from [Semparithi Aravindan].
+> You can just copy `main.sh` to your system and run it. \
+> For the code, refer to `main.cu`.
 
 <br>
 
 ```bash
-$ scl enable gcc-toolset-11 bash
-$ sbatch main.sh
+$ bash main.sh
 
-# ==========================================
-# SLURM_JOB_ID = 3373
-# SLURM_NODELIST = node[01-04]
-# SLURM_JOB_GPUS =
-# ==========================================
-# Cloning into 'hello-mpi'...
-# [node01.local:2180262] MCW rank 0 is not bound (or bound to all available processors)
-# [node02.local:3790641] MCW rank 1 is not bound (or bound to all available processors)
-# [node04.local:3758212] MCW rank 3 is not bound (or bound to all available processors)
-# [node03.local:3287974] MCW rank 2 is not bound (or bound to all available processors)
-# P00: NAME=node01.local
-# P00: OMP_NUM_THREADS=32
-# P02: NAME=node03.local
-# P02: OMP_NUM_THREADS=32
-# P03: NAME=node04.local
-# P03: OMP_NUM_THREADS=32
-# P01: NAME=node02.local
-# P01: OMP_NUM_THREADS=32
-# P00.T00: Hello MPI
-# P00.T24: Hello MPI
-# P00.T16: Hello MPI
-# P00.T26: Hello MPI
-# P00.T05: Hello MPI
-# P00.T29: Hello MPI
-# P00.T22: Hello MPI
-# P00.T06: Hello MPI
-# P00.T17: Hello MPI
-# P00.T23: Hello MPI
-# P00.T25: Hello MPI
-# P00.T13: Hello MPI
-# P00.T01: Hello MPI
-# P00.T09: Hello MPI
-# P00.T03: Hello MPI
-# P00.T02: Hello MPI
-# P00.T31: Hello MPI
-# P03.T00: Hello MPI
-# P03.T24: Hello MPI
-# P03.T05: Hello MPI
-# P03.T21: Hello MPI
-# P03.T04: Hello MPI
-# ...
+# Cloning into 'hello-cuda'...
+# remote: Enumerating objects: 33, done.
+# remote: Counting objects: 100% (12/12), done.
+# remote: Compressing objects: 100% (11/11), done.
+# remote: Total 33 (delta 2), reused 6 (delta 1), pack-reused 21
+# Receiving objects: 100% (33/33), 24.58 KiB | 719.00 KiB/s, done.
+# Resolving deltas: 100% (9/9), done.
+# HELLO WORLD:
+# GPU[B1.T0]: Hello CUDA
+# GPU[B1.T1]: Hello CUDA
+# GPU[B1.T2]: Hello CUDA
+# GPU[B1.T3]: Hello CUDA
+# GPU[B1.T4]: Hello CUDA
+# GPU[B1.T5]: Hello CUDA
+# GPU[B1.T6]: Hello CUDA
+# GPU[B1.T7]: Hello CUDA
+# GPU[B3.T0]: Hello CUDA
+# GPU[B3.T1]: Hello CUDA
+# GPU[B3.T2]: Hello CUDA
+# GPU[B3.T3]: Hello CUDA
+# GPU[B3.T4]: Hello CUDA
+# GPU[B3.T5]: Hello CUDA
+# GPU[B3.T6]: Hello CUDA
+# GPU[B3.T7]: Hello CUDA
+# GPU[B2.T0]: Hello CUDA
+# GPU[B2.T1]: Hello CUDA
+# GPU[B2.T2]: Hello CUDA
+# GPU[B2.T3]: Hello CUDA
+# GPU[B2.T4]: Hello CUDA
+# GPU[B2.T5]: Hello CUDA
+# GPU[B2.T6]: Hello CUDA
+# GPU[B2.T7]: Hello CUDA
+# GPU[B0.T0]: Hello CUDA
+# GPU[B0.T1]: Hello CUDA
+# GPU[B0.T2]: Hello CUDA
+# GPU[B0.T3]: Hello CUDA
+# GPU[B0.T4]: Hello CUDA
+# GPU[B0.T5]: Hello CUDA
+# GPU[B0.T6]: Hello CUDA
+# GPU[B0.T7]: Hello CUDA
+# CPU: Hello world!
+
+# DEVICE PROPERTIES:
+# COMPUTE DEVICE 0:
+# Name: Tesla V100-PCIE-16GB
+# Compute capability: 7.0
+# Multiprocessors: 80
+# Clock rate: 1380 MHz
+# Global memory: 16151 MB
+# Constant memory: 64 KB
+# Shared memory per block: 48 KB
+# Registers per block: 65536
+# Threads per block: 1024 (max)
+# Threads per warp: 32
+# Block dimension: 1024x1024x64 (max)
+# Grid dimension: 2147483647x65535x65535 (max)
+# Device copy overlap: yes
+# Kernel execution timeout: no
+
+# CHOOSE DEVICE:
+# Current CUDA device: 0
+# CUDA device with atleast compute capability 1.3: 0
+# Cards that have compute capability 1.3 or higher
+# support double-precision floating-point math.
+
+# MALLOC PERFORMANCE:
+# Host malloc (1 GB): 0.00 ms
+# CUDA malloc (1 GB): 1.35 ms
+# Host free (1 GB): 0.00 ms
+# CUDA free (1 GB): 1.51 ms
+
+# MEMCPY PERFORMANCE:
+# Host to host (1 GB): 412.59 ms
+# Host to device (1 GB): 225.32 ms
+# Device to host (1 GB): 246.87 ms
+# Device to device (1 GB): 0.04 ms
+
+# ADDITION:
+# a = 1, b = 2
+# a + b = 3 (GPU)
+
+# VECTOR ADDITION:
+# x = vector of size 1 GB
+# y = vector of size 1 GB
+# Vector addition on host (a = x + y): 438.02 ms
+# Vector addition on device <<<32768, 32>>> (a = x + y): 4.33 ms
+# Vector addition on device <<<16384, 64>>> (a = x + y): 3.98 ms
+# Vector addition on device <<<8192, 128>>> (a = x + y): 4.01 ms
+# Vector addition on device <<<4096, 256>>> (a = x + y): 3.97 ms
+# Vector addition on device <<<2048, 512>>> (a = x + y): 4.00 ms
+# Vector addition on device <<<1024, 1024>>> (a = x + y): 3.97 ms
+
+# DOT PRODUCT:
+# x = vector of size 1 GB
+# y = vector of size 1 GB
+# Dot product on host (a = x . y): 207.39 ms [2.154769e+05]
+# Dot product on device (a = x . y): 2.69 ms [2.154769e+05] (memcpy approach)
+# Dot product on device (a = x . y): 2.50 ms [2.154769e+05] (inplace approach)
+# Dot product on device (a = x . y): 2.50 ms [2.154769e+05] (atomic-add approach)
+
+# HISTOGRAM:
+# buf = vector of size 1 GB
+# Finding histogram of buf on host: 747.00 ms
+# Finding histogram of buf on device (basic approach): 401.06 ms
+# Finding histogram of buf on device (shared approach): 6.85 ms
+
+# MATRIX MULTIPLICATION:
+# x = matrix of size 16 MB
+# y = matrix of size 16 MB
+# Matrix multiplication on host (a = x * y): 33307.13 ms [3.287916e+00]
+# Matrix multiplication on device (a = x * y): 18.93 ms (basic approach) [3.287916e+00]
+# Matrix multiplication on device (a = x * y): 12.20 ms (tiled approach) [3.287916e+00]
 ```
 
 <br>
@@ -61,37 +128,18 @@ $ sbatch main.sh
 
 ## References
 
-- [MPI Basics : Tom Nurkkala](https://www.youtube.com/watch?v=c0C9mQaxsD4)
-- [OpenMPI tutorial coding in Fortran 90 - 01 Hello World! : yinjianz](https://www.youtube.com/watch?v=wTlu971fXkE)
-- [Mod-09 Lec-40 MPI programming : Prof. Matthew Jacob](https://www.youtube.com/watch?v=mzfVimVbguQ)
-- [MPI/OpenMP Hybrid Programming : Neil Stringfellow](https://www.youtube.com/watch?v=TiQRPMBBmDs)
-- [Introduction to MPI Programming, part 1 : Hristo Iliev](https://www.youtube.com/watch?v=LBgx_S5ougk)
-- [Hybrid MPI+OpenMP programming : Dr. Jussi Enkovaara](https://www.youtube.com/watch?v=1Inj6hdSnG0)
-- [Running an MPI Cluster within a LAN : Dwaraka Nath](https://mpitutorial.com/tutorials/running-an-mpi-cluster-within-a-lan/)
-- [Return values of MPI calls : RIP Tutorial](https://riptutorial.com/mpi/example/16808/return-values-of-mpi-calls)
-- [MPI Error Handling : Dartmouth College](https://www.dartmouth.edu/~rc/classes/intro_mpi/mpi_error_functions.html)
-- [Does storing mpi rank enhance the performance : Cosmin Ioniță](https://stackoverflow.com/a/49873583/1413259)
-- [MPI error handler not getting called when exception occurs : Hristo Iliev](https://stackoverflow.com/a/20067763/1413259)
-- [Assert function for MPI Programs : Gilles Gouaillardet](https://stackoverflow.com/a/50519696/1413259)
-- [In MPI, how to make the following program Wait till all calculations are completed : Gilles](https://stackoverflow.com/a/39609017/1413259)
-- [MPI_Abort() vs exit() : R.. GitHub STOP HELPING ICE](https://stackoverflow.com/a/54844676/1413259)
-- [MPI_Datatype : RookieHPC](https://rookiehpc.org/mpi/docs/mpi_datatype/index.html)
-- [MPI_Error_string : DeinoMPI](https://mpi.deino.net/mpi_functions/MPI_Error_string.html)
-- [MPI_Error_string : MPICH](https://www.mpich.org/static/docs/v3.3/www3/MPI_Error_string.html)
-- [MPI_Comm_size : MPICH](https://www.mpich.org/static/docs/v3.3/www3/MPI_Comm_size.html)
-- [MPI_Comm_rank : MPICH](https://www.mpich.org/static/docs/v3.3/www3/MPI_Comm_rank.html)
-- [MPI_Get_processor_name : MPICH](https://www.mpich.org/static/docs/v3.2/www3/MPI_Get_processor_name.html)
+- [CUB Documentation](https://nvlabs.github.io/cub/)
+- [moderngpu/moderngpu: Patterns and behaviors for GPU computing](https://github.com/moderngpu/moderngpu)
+- [Faster Parallel Reductions on Kepler](https://developer.nvidia.com/blog/faster-parallel-reductions-kepler/)
+- [CUDA atomicAdd for doubles definition error](https://stackoverflow.com/a/37569519/1413259)
+- [CUDA C++ Programming Guide](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html)
+- [CUDA Toolkit Documentation](https://docs.nvidia.com/cuda/index.html)
 
 <br>
 <br>
 
-[![](https://img.youtube.com/vi/c0C9mQaxsD4/maxresdefault.jpg)](https://www.youtube.com/watch?v=c0C9mQaxsD4)<br>
+[![](https://img.youtube.com/vi/8sDg-lD1fZQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=8sDg-lD1fZQ)<br>
 [![ORG](https://img.shields.io/badge/org-puzzlef-green?logo=Org)](https://puzzlef.github.io)
 
 
-[Semparithi Aravindan]: https://www.iiit.ac.in/people/faculty/Semparithi.Aravindan/
-[IIIT]:   https://www.iiit.ac.in
-[MPI]:    https://en.wikipedia.org/wiki/Message_Passing_Interface
-[SLURM]:  https://en.wikipedia.org/wiki/Slurm_Workload_Manager
-[OpenMP]: https://en.wikipedia.org/wiki/OpenMP
-[gist]:   https://gist.github.com/wolfram77/41114570e75f5c0d0ffeb9fd73ec252b
+[CUDA]: https://docs.nvidia.com/cuda/index.html

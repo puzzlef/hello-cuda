@@ -12,20 +12,16 @@ fi
 cd $src
 
 # Fixed config
-: "${TYPE:=double}"
 : "${MAX_THREADS:=32}"
-: "${REPEAT_BATCH:=5}"
-: "${REPEAT_METHOD:=1}"
+: "${REPEAT_METHOD:=5}"
 # Define macros (dont forget to add here)
 DEFINES=(""
-"-DTYPE=$TYPE"
 "-DMAX_THREADS=$MAX_THREADS"
-"-DREPEAT_BATCH=$REPEAT_BATCH"
 "-DREPEAT_METHOD=$REPEAT_METHOD"
 )
 
 # Run
-nvcc ${DEFINES[*]} -std=c++17 -O3 -Xcompiler -fopenmp main.cu -o "a$1.out"
+nvcc ${DEFINES[*]} -std=c++17 -arch=sm_60 -O3 -Xcompiler -fopenmp main.cu -o "a$1.out"
 stdbuf --output=L ./"a$1.out" 2>&1 | tee -a "$out"
 
 # Signal completion
