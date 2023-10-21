@@ -1,4 +1,4 @@
-A basic example to perform operations on a list of numbers on GPU using [CUDA].
+A basic "Hello world" or "Hello CUDA" example to perform a number of operations on NVIDIA GPUs using [CUDA].
 
 > You can just copy `main.sh` to your system and run it. \
 > For the code, refer to `main.cu`.
