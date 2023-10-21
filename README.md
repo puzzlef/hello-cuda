@@ -1,5 +1,6 @@
 A basic "Hello world" or "Hello CUDA" example to perform a number of operations on NVIDIA GPUs using [CUDA].
 
+> **Note**
 > You can just copy `main.sh` to your system and run it. \
 > For the code, refer to `main.cu`.
 
@@ -140,6 +141,7 @@ $ bash main.sh
 
 [![](https://img.youtube.com/vi/8sDg-lD1fZQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=8sDg-lD1fZQ)<br>
 [![ORG](https://img.shields.io/badge/org-puzzlef-green?logo=Org)](https://puzzlef.github.io)
+[![DOI](https://zenodo.org/badge/679802777.svg)](https://zenodo.org/doi/10.5281/zenodo.10030458)
 
 
 [CUDA]: https://docs.nvidia.com/cuda/index.html
