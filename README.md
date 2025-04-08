@@ -142,6 +142,6 @@ $ bash main.sh
 [![](https://img.youtube.com/vi/8sDg-lD1fZQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=8sDg-lD1fZQ)<br>
 [![ORG](https://img.shields.io/badge/org-puzzlef-green?logo=Org)](https://puzzlef.github.io)
 [![DOI](https://zenodo.org/badge/679802777.svg)](https://zenodo.org/doi/10.5281/zenodo.10030458)
-
+![](https://ga-beacon.deno.dev/G-KD28SG54JQ:hbAybl6nQFOtmVxW4if3xw/github.com/puzzlef/hello-cuda)
 
 [CUDA]: https://docs.nvidia.com/cuda/index.html
